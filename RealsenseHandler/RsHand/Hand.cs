@@ -191,11 +191,14 @@ namespace RealsenseHandler.RsHand
 
     public class HandPreprocessed
     {
+        readonly CultureInfo ci = new CultureInfo("en-US");
         FingerPreprocessed Thumb { get; set; }
         FingerPreprocessed Index { get; set; }
         FingerPreprocessed Middle { get; set; }
         FingerPreprocessed Ring { get; set; }
         FingerPreprocessed Pinky { get; set; }
+
+        Point4DF32 HandOrientation { get; set; }
 
         public HandPreprocessed(Hand hand)
         {
@@ -204,12 +207,20 @@ namespace RealsenseHandler.RsHand
             Middle = new FingerPreprocessed(hand.Middle);
             Ring = new FingerPreprocessed(hand.Ring);
             Pinky = new FingerPreprocessed(hand.Pingky);
+            HandOrientation = hand.orientation.Quarternion;
         }
 
         public string GetStream()
         {
-            return $"{Thumb.GetStream()}{Index.GetStream()}{Middle.GetStream()}{Ring.GetStream()}{Pinky.GetStream()}";
+            return $"{Thumb.GetStream()}{Index.GetStream()}{Middle.GetStream()}{Ring.GetStream()}{Pinky.GetStream()}{PopulateOrientationDataToString(HandOrientation)}";
         }
+
+        private string PopulateOrientationDataToString(Point4DF32 finger)
+        {
+            string result = Math.Round(finger.w, 3).ToString(ci) + "," + Math.Round(finger.x, 3).ToString(ci) + "," + Math.Round(finger.y, 3).ToString(ci) + "," + Math.Round(finger.z, 3).ToString(ci);
+            return result;
+        }
+
     }
 
     public class FingerPreprocessed
@@ -225,6 +236,11 @@ namespace RealsenseHandler.RsHand
         public Point3DF32 DeltaJtJtImage { get; set; }
         public Point3DF32 DeltaJtBaseImage { get; set; }
         public Point3DF32 DeltaBaseCenterImage { get; set; }
+        public Point4DF32 OrientationTip { get; set; }
+        public Point4DF32 OrientationJt2 { get; set; }
+        public Point4DF32 OrientationJt1 { get; set; }
+        public Point4DF32 OrientationBase { get; set; }
+
 
         public FingerPreprocessed(Finger finger)
         {
@@ -238,6 +254,11 @@ namespace RealsenseHandler.RsHand
             DeltaJtJtImage = GetDeltaPoint(finger.JointsImagePosition[1], finger.JointsImagePosition[2]);
             DeltaJtBaseImage = GetDeltaPoint(finger.JointsImagePosition[3], finger.JointsImagePosition[3]);
             DeltaBaseCenterImage = GetDeltaPoint(finger.JointsImagePosition[4], finger.JointsImagePosition[0]);
+
+            OrientationTip = finger.JointsOrientation[0];
+            OrientationJt2 = finger.JointsOrientation[1];
+            OrientationJt1 = finger.JointsOrientation[2];
+            OrientationBase = finger.JointsOrientation[3];
         }
 
         public string GetStream()
@@ -250,7 +271,11 @@ namespace RealsenseHandler.RsHand
                 $"{ PopulateFingerPositionDataToString(DeltaTipJtImage)}," +
                 $"{ PopulateFingerPositionDataToString(DeltaJtJtImage)}," +
                 $"{ PopulateFingerPositionDataToString(DeltaJtBaseImage)}," +
-                $"{ PopulateFingerPositionDataToString(DeltaBaseCenterImage)},";
+                $"{ PopulateFingerPositionDataToString(DeltaBaseCenterImage)},"+
+                $"{ PopulateFingerOrientationDataToString(OrientationTip)}," +
+                $"{ PopulateFingerOrientationDataToString(OrientationJt1)}," +
+                $"{ PopulateFingerOrientationDataToString(OrientationJt2)}," +
+                $"{ PopulateFingerOrientationDataToString(OrientationBase)},";
         }
 
 
@@ -259,6 +284,13 @@ namespace RealsenseHandler.RsHand
             string result = Math.Round(finger.x, 3).ToString(ci) + "," + Math.Round(finger.y, 3).ToString(ci) + "," + Math.Round(finger.z, 3).ToString(ci);
             return result;
         }
+
+        private string PopulateFingerOrientationDataToString(Point4DF32 finger)
+        {
+            string result = Math.Round(finger.w, 3).ToString(ci) + "," + Math.Round(finger.x, 3).ToString(ci) + "," + Math.Round(finger.y, 3).ToString(ci) + "," + Math.Round(finger.z, 3).ToString(ci);
+            return result;
+        }
+
         private Point3DF32 GetDeltaPoint(Point3DF32 point1, Point3DF32 point2)
         {
             return new Point3DF32(point1.x - point2.x, point1.y - point2.y, point1.z - point2.z);
