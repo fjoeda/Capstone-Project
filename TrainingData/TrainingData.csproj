@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="allData.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="allData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BundleTransformer.Core" Version="1.10.0" />
+    <PackageReference Include="Microsoft.ML" Version="1.4.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,434 @@
+﻿<Window x:Class="DataCollector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataCollector"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1280">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!--Finger Part Thumb-->
+            <StackPanel Grid.Column="0">
+                <Label>Thumb Left</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Index-->
+            <StackPanel Grid.Column="1">
+                <Label>Index Left</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Middle-->
+            <StackPanel Grid.Column="2">
+                <Label>Middle</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Ring-->
+            <StackPanel Grid.Column="3">
+                <Label>Ring Left</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Pinky-->
+            <StackPanel Grid.Column="4">
+                <Label>Pinky Left</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!--Finger Part Thumb-->
+            <StackPanel Grid.Column="0">
+                <Label>Thumb Right</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbFlexsionRight}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbPositionTipRight}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbPositionJT2Right}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbPositionJT1Right}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbPositionBaseRight}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbRotationTipRight}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbRotationJT2Righ}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbRotationJT1Right}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding ThumbRotationBaseRight}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Index-->
+            <StackPanel Grid.Column="1">
+                <Label>Index Right</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Middle-->
+            <StackPanel Grid.Column="2">
+                <Label>Middle Right</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Ring-->
+            <StackPanel Grid.Column="3">
+                <Label>Ring Right</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--Finger Part Pinky-->
+            <StackPanel Grid.Column="4">
+                <Label>Pinky Right</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Flexsion :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Position Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Tip :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT2 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation JT1 :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="10">Rotation Base :</Label>
+                    <Label FontSize="10" Content="{Binding}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
