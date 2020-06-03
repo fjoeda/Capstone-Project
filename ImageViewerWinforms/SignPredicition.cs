@@ -11,13 +11,13 @@ namespace ImageViewerWinforms
     public class InputData
     {
         [ColumnName("PixelValues")]
-        [LoadColumn(0, 12499)]
-        [VectorType(12500)]
+        [LoadColumn(0, 12419)]
+        [VectorType(12420)]
         public float[] PixelValues;
 
         
         [ColumnName("Sign")]
-        [LoadColumn(12500)]
+        [LoadColumn(12420)]
         public string Sign;
     }
 
@@ -43,10 +43,10 @@ namespace ImageViewerWinforms
         {
             var result = prediction.Predict(input);
             var maxScore = result.Score.Max();
-            if (maxScore > 0.85)
-                return labels[Array.IndexOf(result.Score, maxScore)];
-            else
-                return null;
+            Console.WriteLine(result.ToString());
+            Console.WriteLine(maxScore);
+            return labels[Array.IndexOf(result.Score, maxScore)];
+            
         }
 
         private static string[] labels = new string[] { "Halo", "Kamu", "OK", "Siapa", "Terima Kasih" };

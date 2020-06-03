@@ -171,22 +171,23 @@ namespace ImageViewer
         private void SaveImage(string fileName, int fileNum)
         {
             string folderName = tb_Label.Text;
-            if (!Directory.Exists(Environment.CurrentDirectory + "\\Data\\" + folderName))
+            string collName = tb_Collection.Text;
+            if (!Directory.Exists(Environment.CurrentDirectory + "\\Data\\" + collName + "\\" + folderName))
             {
-                Directory.CreateDirectory(Environment.CurrentDirectory + "\\Data\\" + folderName);
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\Data\\" + collName + "\\" + folderName);
                 currentFileTotal = 0;
             }
             else
             {
                 if (fileNum == 1)
                 {
-                    currentFileTotal = Directory.GetFiles(Environment.CurrentDirectory + "\\Data\\" + folderName).Length;
+                    currentFileTotal = Directory.GetFiles(Environment.CurrentDirectory + "\\Data\\" + collName + "\\" + folderName).Length;
                 }
             }
 
             var encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create((BitmapSource)img_Depth.Source));
-            using (FileStream stream = new FileStream(Environment.CurrentDirectory + "\\Data\\"+folderName+"\\"+fileName+$"{fileNum+currentFileTotal}.jpg", FileMode.Append))
+            using (FileStream stream = new FileStream(Environment.CurrentDirectory + "\\Data\\" + collName + "\\" + folderName+"\\"+fileName+$"{fileNum+currentFileTotal}.jpg", FileMode.Append))
             {
                 encoder.Save(stream);
             }
@@ -194,7 +195,7 @@ namespace ImageViewer
 
         private void btn_Record_Click(object sender, RoutedEventArgs e)
         {
-            if (!tb_Label.Text.Equals(""))
+            if (!tb_Label.Text.Equals("") && !tb_Collection.Text.Equals(""))
             {
                 timerCountdown.Start();
             }

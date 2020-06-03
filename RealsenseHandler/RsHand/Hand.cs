@@ -212,7 +212,7 @@ namespace RealsenseHandler.RsHand
 
         public string GetStream()
         {
-            return $"{Thumb.GetStream()}{Index.GetStream()}{Middle.GetStream()}{Ring.GetStream()}{Pinky.GetStream()}{PopulateOrientationDataToString(HandOrientation)}";
+            return $"{Thumb.GetStream()}{Index.GetStream()}{Middle.GetStream()}{Ring.GetStream()}{Pinky.GetStream()}{PopulateOrientationDataToString(HandOrientation)},";
         }
 
         private string PopulateOrientationDataToString(Point4DF32 finger)

@@ -38,6 +38,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tm_Record = new System.Windows.Forms.Timer(this.components);
             this.cb_Test = new System.Windows.Forms.CheckBox();
+            this.tb_Collection = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ImgCam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DepthImage)).BeginInit();
             this.SuspendLayout();
@@ -62,9 +64,9 @@
             // 
             // btn_Record
             // 
-            this.btn_Record.Location = new System.Drawing.Point(11, 409);
+            this.btn_Record.Location = new System.Drawing.Point(211, 371);
             this.btn_Record.Name = "btn_Record";
-            this.btn_Record.Size = new System.Drawing.Size(193, 29);
+            this.btn_Record.Size = new System.Drawing.Size(77, 68);
             this.btn_Record.TabIndex = 1;
             this.btn_Record.Text = "Start Record";
             this.btn_Record.UseVisualStyleBackColor = true;
@@ -88,11 +90,11 @@
             // 
             // tb_HandData
             // 
-            this.tb_HandData.Location = new System.Drawing.Point(225, 371);
+            this.tb_HandData.Location = new System.Drawing.Point(294, 371);
             this.tb_HandData.Multiline = true;
             this.tb_HandData.Name = "tb_HandData";
             this.tb_HandData.ReadOnly = true;
-            this.tb_HandData.Size = new System.Drawing.Size(623, 68);
+            this.tb_HandData.Size = new System.Drawing.Size(554, 68);
             this.tb_HandData.TabIndex = 4;
             // 
             // timer1
@@ -117,11 +119,29 @@
             this.cb_Test.UseVisualStyleBackColor = true;
             this.cb_Test.CheckedChanged += new System.EventHandler(this.cb_Test_CheckedChanged);
             // 
+            // tb_Collection
+            // 
+            this.tb_Collection.Location = new System.Drawing.Point(104, 406);
+            this.tb_Collection.Name = "tb_Collection";
+            this.tb_Collection.Size = new System.Drawing.Size(101, 27);
+            this.tb_Collection.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 409);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Collection  :";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 451);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tb_Collection);
             this.Controls.Add(this.cb_Test);
             this.Controls.Add(this.tb_HandData);
             this.Controls.Add(this.tb_Label);
@@ -149,6 +169,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer tm_Record;
         private System.Windows.Forms.CheckBox cb_Test;
+        private System.Windows.Forms.TextBox tb_Collection;
+        private System.Windows.Forms.Label label2;
     }
 }
 

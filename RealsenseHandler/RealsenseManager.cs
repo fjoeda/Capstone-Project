@@ -160,7 +160,12 @@ namespace RealsenseHandler
                     {
                         dataStringStream += "0,0,0,";
                     }
+                    for (int j = 0; j < 4; j++)
+                    {
+                        dataStringStream += "0,0,0,0,";
+                    }
                 }
+                dataStreamString += "0,0,0,0,";
             }
 
             if (leftHand != null && leftHand.IsTracked)
@@ -176,6 +181,11 @@ namespace RealsenseHandler
                     {
                         dataStringStream += "0,0,0,";
                     }
+                    for (int j = 0; j < 4; j++)
+                    {
+                        dataStringStream += "0,0,0,0,";
+                    }
+                    dataStreamString += "0,0,0,0,";
                 }
             }
 

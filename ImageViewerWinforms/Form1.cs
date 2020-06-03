@@ -72,7 +72,7 @@ namespace ImageViewerWinforms
                 {
                     dataVals.Add(float.Parse(values[i]));
                 }
-                if (dataVals.Count == 12500)
+                if (dataVals.Count == 12420)
                 {
                     InputData input = new InputData()
                     {
@@ -80,7 +80,12 @@ namespace ImageViewerWinforms
                     };
                     var pred = predicition.Predict(input);
 
-                    Invoke(new AppendTextOnTextBox(AppendText), new object[] { pred });
+                    //Invoke(new AppendTextOnTextBox(AppendText), new object[] { pred });
+                    Invoke(new AppendTextOnTextBox(SetText), new object[] { pred });
+                    dataVals.Clear();
+                }
+                else if(dataVals.Count>12420)
+                {
                     dataVals.Clear();
                 }
             }
@@ -95,6 +100,12 @@ namespace ImageViewerWinforms
         {
             if(text!=null)
                 tb_HandData.Text += text+" ";
+        }
+
+        private void SetText(string text)
+        {
+            if (text != null)
+                tb_HandData.Text = text;
         }
 
         private void ShowDataStreamOnTextBox(string fileName,string data)
@@ -137,26 +148,29 @@ namespace ImageViewerWinforms
         private void SaveDataStream(string filename,List<string> dataList)
         {
             string folderName = tb_Label.Text;
+            string collFolder = tb_Collection.Text;
             int fileCount = 0;
-            if (!Directory.Exists(Environment.CurrentDirectory + "\\Data\\" + folderName))
+            if (!Directory.Exists(Environment.CurrentDirectory + "\\Data\\"+ collFolder+ "\\" + folderName))
             {
-                Directory.CreateDirectory(Environment.CurrentDirectory + "\\Data\\" + folderName);
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\Data\\" + collFolder + "\\" + folderName);
             }
             else
             {
-                fileCount = Directory.GetFiles(Environment.CurrentDirectory + "\\Data\\" + folderName).Length;
+                fileCount = Directory.GetFiles(Environment.CurrentDirectory + "\\Data\\" + collFolder + "\\" + folderName).Length;
             }
 
-            using(StreamWriter file = new StreamWriter(Environment.CurrentDirectory + "\\Data\\" + folderName+$"\\{filename}_{fileCount+1}.txt"))
+            using(StreamWriter file = new StreamWriter(Environment.CurrentDirectory + "\\Data\\" + collFolder + "\\" + folderName+$"\\{filename}_{fileCount+1}.txt"))
             {
-                for(int i = 0; i < dataList.Count-50; i++)
+                for(int i = 0; i < dataList.Count-30; i++)
                 {
                     var line = "";
-                    for(int j = 0; j < 50; j++)
+                    for(int j = 0; j < 30; j++)
                     {
                         line += dataList[i + j];
                     }
                     file.WriteLine(line+folderName);
+                    string[] vec = (line + folderName).Split(",");
+
                 }
             }
         }
@@ -190,7 +204,7 @@ namespace ImageViewerWinforms
 
         private void btn_Record_Click(object sender, EventArgs e)
         {
-            if (!tb_Label.Text.Equals(""))
+            if (!tb_Label.Text.Equals("") && !tb_Collection.Text.Equals(""))
             {
                 timer1.Start();
             }

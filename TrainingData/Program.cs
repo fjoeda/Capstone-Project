@@ -10,12 +10,12 @@ namespace TrainingData
     class InputData
     {
         [ColumnName("PixelValues")]
-        [LoadColumn(0,12499)]
-        [VectorType(12499)]
+        [LoadColumn(0,12419)]
+        [VectorType(12419)]
         public float[] PixelValues;
 
         [ColumnName("Sign")]
-        [LoadColumn(12500)]
+        [LoadColumn(12420)]
         public string Sign;
     }
 
@@ -46,7 +46,7 @@ namespace TrainingData
             var trainingPipeline = dataProcessPipeline.Append(trainer)
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue("Sign", "Label"));
 
-
+            Console.WriteLine("Start Training....");
             // STEP 4: Train the model fitting to the DataSet            
             ITransformer trainedModel = trainingPipeline.Fit(dataSplit.TrainSet);
             var predictions = trainedModel.Transform(dataSplit.TestSet);
