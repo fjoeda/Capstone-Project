@@ -1,4 +1,6 @@
-﻿namespace ImageViewerWinforms
+﻿using System;
+
+namespace ImageViewerWinforms
 {
     partial class Form1
     {
@@ -40,6 +42,7 @@
             this.cb_Test = new System.Windows.Forms.CheckBox();
             this.tb_Collection = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_CombineData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ImgCam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DepthImage)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +69,7 @@
             // 
             this.btn_Record.Location = new System.Drawing.Point(211, 371);
             this.btn_Record.Name = "btn_Record";
-            this.btn_Record.Size = new System.Drawing.Size(77, 68);
+            this.btn_Record.Size = new System.Drawing.Size(96, 68);
             this.btn_Record.TabIndex = 1;
             this.btn_Record.Text = "Start Record";
             this.btn_Record.UseVisualStyleBackColor = true;
@@ -90,11 +93,11 @@
             // 
             // tb_HandData
             // 
-            this.tb_HandData.Location = new System.Drawing.Point(294, 371);
+            this.tb_HandData.Location = new System.Drawing.Point(962, 12);
             this.tb_HandData.Multiline = true;
             this.tb_HandData.Name = "tb_HandData";
             this.tb_HandData.ReadOnly = true;
-            this.tb_HandData.Size = new System.Drawing.Size(554, 68);
+            this.tb_HandData.Size = new System.Drawing.Size(300, 352);
             this.tb_HandData.TabIndex = 4;
             // 
             // timer1
@@ -110,7 +113,7 @@
             // cb_Test
             // 
             this.cb_Test.AutoSize = true;
-            this.cb_Test.Location = new System.Drawing.Point(861, 371);
+            this.cb_Test.Location = new System.Drawing.Point(1164, 376);
             this.cb_Test.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cb_Test.Name = "cb_Test";
             this.cb_Test.Size = new System.Drawing.Size(98, 24);
@@ -135,11 +138,22 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Collection  :";
             // 
+            // btn_CombineData
+            // 
+            this.btn_CombineData.Location = new System.Drawing.Point(1108, 407);
+            this.btn_CombineData.Name = "btn_CombineData";
+            this.btn_CombineData.Size = new System.Drawing.Size(154, 32);
+            this.btn_CombineData.TabIndex = 1;
+            this.btn_CombineData.Text = "Combine Data";
+            this.btn_CombineData.UseVisualStyleBackColor = true;
+            this.btn_CombineData.Click += new System.EventHandler(this.btn_CombineData_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(967, 451);
+            this.ClientSize = new System.Drawing.Size(1274, 451);
+            this.Controls.Add(this.btn_CombineData);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_Collection);
             this.Controls.Add(this.cb_Test);
@@ -158,6 +172,8 @@
 
         }
 
+        
+
         #endregion
 
         private System.Windows.Forms.PictureBox pb_ImgCam;
@@ -171,6 +187,7 @@
         private System.Windows.Forms.CheckBox cb_Test;
         private System.Windows.Forms.TextBox tb_Collection;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_CombineData;
     }
 }
 

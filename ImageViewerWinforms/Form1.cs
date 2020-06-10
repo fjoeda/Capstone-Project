@@ -72,7 +72,7 @@ namespace ImageViewerWinforms
                 {
                     dataVals.Add(float.Parse(values[i]));
                 }
-                if (dataVals.Count == 12420)
+                if (dataVals.Count == 12300)
                 {
                     InputData input = new InputData()
                     {
@@ -259,6 +259,48 @@ namespace ImageViewerWinforms
                 btn_Record.Enabled = true;
                 tb_Label.Enabled = true;
             }
+        }
+
+        private void btn_CombineData_Click(object sender, EventArgs e)
+        {
+            List<string> allLines = new List<string>();
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string[] filePaths = Directory.GetFiles(dialog.SelectedPath, "preprocessed*.txt",SearchOption.AllDirectories);
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Text File|*.txt|Csv file|*.csv";
+                saveDialog.Title = "Save the combined files";
+
+                DialogResult saveResult = saveDialog.ShowDialog();
+                if (saveResult == DialogResult.OK)
+                {
+                    foreach (string path in filePaths)
+                    {
+                        string[] lines = System.IO.File.ReadAllLines(path);
+                        foreach(string line in lines)
+                        {
+                            allLines.Add(line);
+                        }
+                    }
+
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(saveDialog.FileName))
+                    {
+                        foreach (string line in allLines)
+                        {
+                            file.WriteLine(line);
+                        }
+                    }
+                }
+                saveDialog.Dispose();
+            }
+
+            MessageBox.Show("File Combined");
+
+            allLines.Clear();
+            dialog.Dispose();
+            GC.Collect();
         }
     }
 }

@@ -198,7 +198,7 @@ namespace RealsenseHandler.RsHand
         FingerPreprocessed Ring { get; set; }
         FingerPreprocessed Pinky { get; set; }
 
-        Point4DF32 HandOrientation { get; set; }
+        //Point4DF32 HandOrientation { get; set; }
 
         public HandPreprocessed(Hand hand)
         {
@@ -207,12 +207,12 @@ namespace RealsenseHandler.RsHand
             Middle = new FingerPreprocessed(hand.Middle);
             Ring = new FingerPreprocessed(hand.Ring);
             Pinky = new FingerPreprocessed(hand.Pingky);
-            HandOrientation = hand.orientation.Quarternion;
+            //HandOrientation = hand.orientation.Quarternion;
         }
 
         public string GetStream()
         {
-            return $"{Thumb.GetStream()}{Index.GetStream()}{Middle.GetStream()}{Ring.GetStream()}{Pinky.GetStream()}{PopulateOrientationDataToString(HandOrientation)},";
+            return $"{Thumb.GetStream()}{Index.GetStream()}{Middle.GetStream()}{Ring.GetStream()}{Pinky.GetStream()}";
         }
 
         private string PopulateOrientationDataToString(Point4DF32 finger)
