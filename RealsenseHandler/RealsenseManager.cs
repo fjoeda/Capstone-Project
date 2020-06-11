@@ -79,6 +79,35 @@ namespace RealsenseHandler
 
         }
 
+        public RealsenseManager(bool isDataOnly)
+        {
+            sm = RS.SenseManager.CreateInstance();
+            if (!isDataOnly)
+            {
+                rgbReader = RS.SampleReader.Activate(sm);
+                depthReader = RS.SampleReader.Activate(sm);
+                rgbReader.EnableStream(RS.StreamType.STREAM_TYPE_COLOR);
+                depthReader.EnableStream(RS.StreamType.STREAM_TYPE_DEPTH);
+                rgbReader.SampleArrived += RgbReader_SampleArrived;
+                depthReader.SampleArrived += DepthReader_SampleArrived;
+            }
+            // config hand
+
+
+            handModule = HandModule.Activate(sm);
+            handConfig = handModule.CreateActiveConfiguration();
+            handConfig.TrackedJointsEnabled = true;
+            handConfig.StabilizerEnabled = true;
+            handConfig.TrackingMode = TrackingModeType.TRACKING_MODE_FULL_HAND;
+            handConfig.ApplyChanges();
+            handData = handModule.CreateOutput();
+
+            handModule.FrameProcessed += HandModule_FrameProcessed;
+
+
+
+        }
+
         private void HandModule_FrameProcessed(object sender, RS.FrameProcessedEventArgs args)
         {
             handData.Update();
@@ -116,7 +145,14 @@ namespace RealsenseHandler
         {
             if (args.sample != null)
             {
-                DepthImageRetreived.Invoke(args.sample.Depth);
+                try
+                {
+                    DepthImageRetreived.Invoke(args.sample.Depth);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
 
@@ -124,7 +160,14 @@ namespace RealsenseHandler
         {
             if (args.sample != null)
             {
-                RGBImageRetreived.Invoke(args.sample.Color);
+                try
+                {
+                    RGBImageRetreived.Invoke(args.sample.Color);
+                }catch(Exception e)
+                {
+
+                }
+                
             }
         }
 

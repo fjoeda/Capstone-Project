@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 
-namespace ImageViewerWinforms
+namespace WpfCameraTest
 {
     public class InputData
     {
@@ -47,11 +47,11 @@ namespace ImageViewerWinforms
             var maxScore = result.Score.Max();
             Console.WriteLine(result.ToString());
             Console.WriteLine(maxScore);
-            if (maxScore > 0.7)
+            //if (maxScore > 0.7)
                 return "Predicted : " + labels[Array.IndexOf(result.Score, maxScore)] +
                     Environment.NewLine + "Confidence : " + maxScore.ToString();
-            else
-                return null;
+            //else
+                //return null;
             
         }
 

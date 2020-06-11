@@ -50,7 +50,7 @@ namespace TrainingData
                     AppendCacheCheckpoint(mlContext));
 
             // STEP 3: Set the training algorithm, then create and config the modelBuilder
-            var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "Label", featureColumnName: "Features");
+            var trainer = mlContext.MulticlassClassification.Trainers.NaiveBayes(labelColumnName: "Label", featureColumnName: "Features");
             var trainingPipeline = dataProcessPipeline.Append(trainer)
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue("Sign", "Label"));
 
