@@ -281,7 +281,7 @@ namespace ImageViewerWinforms
                         string[] lines = System.IO.File.ReadAllLines(path);
                         foreach(string line in lines)
                         {
-                            allLines.Add(line);
+                            allLines.Add(line.ToLower());
                         }
                     }
 
