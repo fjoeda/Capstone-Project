@@ -23,7 +23,7 @@ namespace TrainingData
     class OutPutData
     {
         
-        public string Label;
+        public string PredictedLabel;
 
         [ColumnName("Score")]
         public float[] Score;
@@ -34,7 +34,8 @@ namespace TrainingData
         private static MLContext mlContext;
         static void Main(string[] args)
         {
-            Console.WriteLine("Begin Tranining With LBFGS");
+            string name = "Linear SVM OVA";
+            Console.WriteLine($"Begin Tranining With {name}");
             Console.WriteLine("============================================");
             Console.WriteLine("Load Data...");
             mlContext = new MLContext(seed: 0 );
@@ -50,7 +51,9 @@ namespace TrainingData
                     AppendCacheCheckpoint(mlContext));
 
             // STEP 3: Set the training algorithm, then create and config the modelBuilder
-            var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "Label", featureColumnName: "Features");
+            //var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "Label", featureColumnName: "Features");
+
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.LinearSvm(labelColumnName: "Label", featureColumnName: "Features"));
             var trainingPipeline = dataProcessPipeline.Append(trainer)
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue("Sign", "Label"));
 
@@ -61,7 +64,7 @@ namespace TrainingData
             var metrics = mlContext.MulticlassClassification.Evaluate(data: predictions, labelColumnName: "Label", scoreColumnName: "Score");
 
 
-            mlContext.Model.Save(trainedModel, dataSplit.TrainSet.Schema, Environment.CurrentDirectory+"\\model.zip");
+            mlContext.Model.Save(trainedModel, dataSplit.TrainSet.Schema, Environment.CurrentDirectory+$"\\model_{name}.zip");
             Console.WriteLine("============================================");
             Console.WriteLine("Evaluation");
             Console.WriteLine("============================================");

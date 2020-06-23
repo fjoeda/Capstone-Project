@@ -59,9 +59,9 @@ namespace ImageViewerWinforms
             "1", "10","2","3","4","5","6","7","8","9","A","Apa","B","Belum",
             "Berapa","C","D","Dia","E","F","G","H","Halo","I","Isyarat","J",
             "K","Kamu","L","M","Malam","N","O","Ok","P","Pagi",
-            "Q","R","S","Siang","Siapa","Sore",
+            "Q","R","S","Sekarang","Siang","Siapa","Sore",
             "Sudah","T" ,"Teman-teman","Terimakasih","U","V","W",
-            "X","Y","Sekarang"
+            "X","Y","Z"
         };
        
     }

@@ -282,6 +282,7 @@ namespace ImageViewerWinforms
                         foreach(string line in lines)
                         {
                             allLines.Add(line.ToLower());
+                            GC.Collect();
                         }
                     }
 
