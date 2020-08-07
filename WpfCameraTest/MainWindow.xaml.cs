@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using RealsenseHandler;
+using OnnxPredictionEngine;
 
 namespace WpfCameraTest
 {
@@ -60,11 +61,8 @@ namespace WpfCameraTest
             
             if (dataVals.Count == 12300)
             {
-                InputData input = new InputData()
-                {
-                    PixelValues = dataVals.ToArray()
-                };
-                var pred = predicition.Predict(input);
+                
+                var pred = OnnxSignPrediction.Instance.Infer(dataVals.ToArray());
 
                 //Invoke(new AppendTextOnTextBox(AppendText), new object[] { pred });
                 Dispatcher.Invoke(new AppendTextOnTextBox(SetText), new object[] { pred });

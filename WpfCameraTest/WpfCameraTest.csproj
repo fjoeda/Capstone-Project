@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnnxPredictionEngine\PredictionEngine.csproj" />
     <ProjectReference Include="..\RealsenseHandler\RealsenseHandler.csproj" />
   </ItemGroup>
 

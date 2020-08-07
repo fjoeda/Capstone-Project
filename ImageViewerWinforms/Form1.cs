@@ -12,6 +12,7 @@ using RealsenseHandler;
 using System.Drawing.Imaging;
 using System.IO;
 using RS = Intel.RealSense;
+using PredictionEngine;
 
 namespace ImageViewerWinforms
 {
@@ -21,12 +22,17 @@ namespace ImageViewerWinforms
         private int timerRecordTime = 0;
         private bool isRecording = false;
         private bool isPrediction = false;
+        private bool isEvaluating = false;
+        private bool isRecordingFinished = false;
         private readonly D2D1Render renderRGB;
         private readonly D2D1Render renderDepth;
         private List<string> streamLines = new List<string>();
         private List<string> preprocessedStreamLines = new List<string>();
         private SignPredicition predicition = new SignPredicition();
         private List<float> dataVals = new List<float>();
+        private ISignPreditionEngine preditionEngine;
+
+        private Dictionary<string, int> evaluationDict = new Dictionary<string, int>();
 
 
         private readonly RealsenseManager rm;
@@ -49,7 +55,8 @@ namespace ImageViewerWinforms
             renderDepth.SetHWND(pb_DepthImage);
             rm.Init();
 
-            
+            preditionEngine = new MLNetHierarchicalSignPrediciton(MLNetClassifier.LightGBM);
+            InitiateDitionary();
         }
 
         private void Rm_ImageCaptured(Bitmap bitmap)
@@ -62,11 +69,14 @@ namespace ImageViewerWinforms
 
         private void Rm_DataStreamUpdate(string dataStream, string preprocessedDataStream)
         {
+            
             var stream = dataStream.Split(",");
             var preprocessedStream = preprocessedDataStream.Split(",");
             
             if (isPrediction)
             {
+                string pred = "";
+                
                 var values = preprocessedDataStream.Split(',');
                 for(int i = 0;i<values.Length-1;i++)
                 {
@@ -74,19 +84,29 @@ namespace ImageViewerWinforms
                 }
                 if (dataVals.Count == 12300)
                 {
-                    InputData input = new InputData()
+                    PredictionEngine.InputData input = new PredictionEngine.InputData()
                     {
                         PixelValues = dataVals.ToArray()
                     };
-                    var pred = predicition.Predict(input);
-
-                    //Invoke(new AppendTextOnTextBox(AppendText), new object[] { pred });
-                    Invoke(new AppendTextOnTextBox(SetText), new object[] { pred });
+                    pred = preditionEngine.PredictSingle(input);
+                    
+                    Invoke(new AppendTextOnTextBox(SetPredictionLabel), new object[] { pred });
+                   
                     dataVals.Clear();
                 }
                 else if(dataVals.Count>12420)
                 {
                     dataVals.Clear();
+                }
+
+                if (isEvaluating && (pred!=null))
+                {
+                    CountPredition(pred);
+                    Invoke(new AppendTextOnTextBox(SetText), new object[] { EvaluationText() });
+                }
+                else
+                {
+                    Invoke(new AppendTextOnTextBox(SetText), new object[] { pred });
                 }
             }
             else
@@ -96,27 +116,61 @@ namespace ImageViewerWinforms
             }
         }
 
+        private void SetPredictionLabel(string text)
+        {
+            if (text != null)
+                lbl_prediction.Text = "Prediction : " + text;
+        }
+
         private void AppendText(string text)
         {
             if(text!=null)
                 tb_HandData.Text += text+" ";
+            
         }
 
         private void SetText(string text)
         {
             if (text != null)
                 tb_HandData.Text = text;
+            if (isEvaluating && isRecordingFinished)
+            {
+                SaveEvaluationResult($"Evaluation for {tb_Label.Text}");
+                isRecordingFinished = false;
+                InitiateDitionary();
+            }
+        }
+
+        private void SaveEvaluationResult(string filename)
+        {
+            string folderName = tb_Label.Text;
+            string collFolder = tb_Collection.Text;
+            int fileCount = 0;
+            if (!Directory.Exists(Environment.CurrentDirectory + "\\Evaluation\\" + collFolder + "\\" + folderName))
+            {
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\Evaluation\\" + collFolder + "\\" + folderName);
+            }
+            else
+            {
+                fileCount = Directory.GetFiles(Environment.CurrentDirectory + "\\Evaluation\\" + collFolder + "\\" + folderName).Length;
+            }
+
+            using (StreamWriter file = new StreamWriter(Environment.CurrentDirectory + "\\Evaluation\\" + collFolder + "\\" + folderName + $"\\{filename}_{fileCount + 1}.txt"))
+            {
+                file.WriteLine(tb_HandData.Text);
+            }
         }
 
         private void ShowDataStreamOnTextBox(string fileName,string data)
         {
             if(!isPrediction)
                 tb_HandData.Text = data;
-            if (isRecording)
+
+            if (isRecording && !isPrediction)
             {
                 streamLines.Add(data);
             }
-            else
+            else 
             {
                 if (!(streamLines.Count == 0))
                 {
@@ -222,6 +276,8 @@ namespace ImageViewerWinforms
                 btn_Record.Text = "Recording...";
                 btn_Record.Enabled = false;
                 timerCountDown = 4;
+                isRecordingFinished = false;
+                InitiateDitionary();
             }
         }
 
@@ -235,6 +291,7 @@ namespace ImageViewerWinforms
                 btn_Record.Enabled = true;
                 tm_Record.Stop();
                 timerRecordTime = 0;
+                isRecordingFinished = true;
                 MessageBox.Show($"Recording for {tb_Label.Text} is finished");
             }
         }
@@ -250,14 +307,14 @@ namespace ImageViewerWinforms
             {
                 tb_HandData.Clear();
                 isPrediction = true;
-                btn_Record.Enabled = false;
-                tb_Label.Enabled = false;
+                //btn_Record.Enabled = false;
+                //tb_Label.Enabled = false;
             }
             else
             {
                 isPrediction = false;
-                btn_Record.Enabled = true;
-                tb_Label.Enabled = true;
+                //btn_Record.Enabled = true;
+                //tb_Label.Enabled = true;
             }
         }
 
@@ -282,6 +339,7 @@ namespace ImageViewerWinforms
                         foreach(string line in lines)
                         {
                             allLines.Add(line.ToLower());
+
                             GC.Collect();
                         }
                     }
@@ -302,6 +360,50 @@ namespace ImageViewerWinforms
             allLines.Clear();
             dialog.Dispose();
             GC.Collect();
+        }
+
+        private void InitiateDitionary()
+        {
+            evaluationDict.Clear();
+            foreach(var item in MLNetSignPrediction.labels)
+            {
+                evaluationDict.Add(item, 0);
+            }
+        }
+
+        private void tb_Label_TextChanged(object sender, EventArgs e)
+        {
+            if (isPrediction)
+            {
+                if (!tb_Label.Text.Equals(""))
+                {
+                    isEvaluating = true;
+                }
+                else
+                {
+                    isEvaluating = false;
+                }
+            }
+        }
+
+        private void CountPredition(string pred)
+        {
+            if (!pred.Equals(""))
+            {
+                var currentVal = evaluationDict[pred];
+                evaluationDict[pred] +=1;
+            }
+            
+        }
+
+        private string EvaluationText()
+        {
+            string evalText = $"Evaluation for {tb_Label.Text} :";
+            foreach(var item in evaluationDict)
+            {
+                evalText += Environment.NewLine + $"{item.Key} : {item.Value}";
+            }
+            return evalText;
         }
     }
 }

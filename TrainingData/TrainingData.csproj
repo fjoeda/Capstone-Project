@@ -7,17 +7,54 @@
 
   <ItemGroup>
     <None Remove="allData.txt" />
+    <None Remove="AllDataClf.csv" />
+    <None Remove="AlphabetTrain2.csv" />
+    <None Remove="CommonSignTrain.csv" />
+    <None Remove="NumberTrain.csv" />
+    <None Remove="SignCategorical.csv" />
+    <None Remove="SignTestData.csv" />
+    <None Remove="SignTrainData.csv" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="allData.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="AllDataClf.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AlphabetTrain2.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CommonSignTrain.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NumberTrain.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SignCategorical.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SignTestData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SignTrainData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BundleTransformer.Core" Version="1.10.0" />
-    <PackageReference Include="Microsoft.ML" Version="1.4.0" />
+    <PackageReference Include="Microsoft.ML" Version="1.5.0" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="1.5.0" />
+    <PackageReference Include="Microsoft.ML.LightGbm" Version="1.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnnxPredictionEngine\PredictionEngine.csproj" />
   </ItemGroup>
 
 </Project>

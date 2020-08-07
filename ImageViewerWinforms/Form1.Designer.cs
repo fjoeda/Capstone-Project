@@ -43,6 +43,7 @@ namespace ImageViewerWinforms
             this.tb_Collection = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_CombineData = new System.Windows.Forms.Button();
+            this.lbl_prediction = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ImgCam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DepthImage)).BeginInit();
             this.SuspendLayout();
@@ -90,6 +91,7 @@ namespace ImageViewerWinforms
             this.tb_Label.Name = "tb_Label";
             this.tb_Label.Size = new System.Drawing.Size(135, 27);
             this.tb_Label.TabIndex = 3;
+            this.tb_Label.TextChanged += new System.EventHandler(this.tb_Label_TextChanged);
             // 
             // tb_HandData
             // 
@@ -97,6 +99,7 @@ namespace ImageViewerWinforms
             this.tb_HandData.Multiline = true;
             this.tb_HandData.Name = "tb_HandData";
             this.tb_HandData.ReadOnly = true;
+            this.tb_HandData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tb_HandData.Size = new System.Drawing.Size(300, 352);
             this.tb_HandData.TabIndex = 4;
             // 
@@ -148,11 +151,21 @@ namespace ImageViewerWinforms
             this.btn_CombineData.UseVisualStyleBackColor = true;
             this.btn_CombineData.Click += new System.EventHandler(this.btn_CombineData_Click);
             // 
+            // lbl_prediction
+            // 
+            this.lbl_prediction.AutoSize = true;
+            this.lbl_prediction.Location = new System.Drawing.Point(962, 376);
+            this.lbl_prediction.Name = "lbl_prediction";
+            this.lbl_prediction.Size = new System.Drawing.Size(87, 20);
+            this.lbl_prediction.TabIndex = 6;
+            this.lbl_prediction.Text = "Prediction : ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1274, 451);
+            this.Controls.Add(this.lbl_prediction);
             this.Controls.Add(this.btn_CombineData);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_Collection);
@@ -188,6 +201,7 @@ namespace ImageViewerWinforms
         private System.Windows.Forms.TextBox tb_Collection;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_CombineData;
+        private System.Windows.Forms.Label lbl_prediction;
     }
 }
 

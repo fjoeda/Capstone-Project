@@ -339,3 +339,11 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /TrainingData/allData.txt
+/TrainingData/NumberTrain.csv
+/TrainingData/CommonSignTrain.csv
+/TrainingData/AlphabetTrain2.csv
+/TrainingData/AllDataClf.csv
+/TrainingData/SignTrainData.csv
+/TrainingData/SignTestData.csv
+/TrainingData/SignCategorical2.csv
+/TrainingData/SignCategorical.csv
